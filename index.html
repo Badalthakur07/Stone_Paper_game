@@ -1,1 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game</title>
+<style type="text/css">
 
+  body{
+    box-sizing: border-box;
+    margin: 0%;
+    padding: 0%;
+  }
+  section{
+    background-color:tomato;
+    width: 100%;
+    height: 100vh;
+  }
+  div{
+    width: 50%;
+    height: 200px;
+    background: #fff;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: 10%;
+    display: flex;
+   justify-content: space-around;
+   align-items: center;
+
+  }
+  nav{
+    width: 50%;
+    height: 200px;
+    background: #fff;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    color: black;
+    text-align: center;
+  }
+  .btn{
+padding: 10px; 
+border: 2px solid tomato ;
+font-size: 20px;
+border-radius: 40px;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+font-weight: 700;
+  }
+p{
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  font-size: 30px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+   font-style: inherit;
+
+}
+  
+</style>
+</head>
+<body>
+<section>
+ <div>
+<button id="stone"class="btn"> stone</button>
+<button id="paper" class="btn">paper</button>
+<button id="scissors"class="btn">scissors</button>
+</div> 
+ <nav>
+<p class="comp"></p>
+<p class="think"></p>
+</nav> 
+</section>
+
+
+
+<script type="text/javascript">
+// let Stone = document.getElementById('Stone')
+// let Paper = document.getElementById('Paper')
+// let Scissors = document.getElementById('Scissors');
+let btn = document.querySelectorAll('.btn')
+let text = document.querySelector('.comp');
+let think = document.querySelector('.think')
+function game(){
+let arr = ['stone','paper','scissors'];
+let a = Math.floor(Math.random()*3);
+return arr[a];
+  }
+function playgame(user){
+console.log(user);
+const cc = game()
+ think.innerHTML = `Computer Choice = ${cc}`
+console.log(cc)
+if(user === cc){
+  text.innerHTML = 'Draw game'
+}else{
+  let userwin = true;
+if(user === 'rock'){
+userwin = cc === 'paper' ? false : true;
+}else if(user === 'paper'){
+  userwin = cc === 'scissors' ? false : true;
+}else {
+  cc === 'rock' ? false : true;
+}
+winner(userwin)
+
+}
+}
+
+
+const winner =(userwin)=>{
+ 
+  if(userwin){
+    console.log('win')
+    text.innerHTML = `You Win`
+    text.style.backgroundColor = 'green'
+  }else{
+    console.log('loose')
+    text.innerHTML = 'Computer win'
+    text.style.backgroundColor = 'red'
+  }
+}
+
+ 
+btn.forEach((box)=>{
+box.addEventListener('click',(e)=>{
+const user = box.getAttribute('id');
+playgame(user)    
+})
+})
+
+</script> 
+</body>
+</html>
